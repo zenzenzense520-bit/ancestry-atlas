@@ -1,0 +1,7 @@
+numpy==2.3.5
+scikit-learn==1.8.0
+matplotlib==3.10.8
+fonttools==4.61.1
+brotli==1.2.0
+pgenlib==0.95.1
+zstandard==0.25.0
