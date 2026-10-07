@@ -1,0 +1,42 @@
+[
+  {
+    "id": "rs6726523",
+    "chromosome": "2",
+    "observed_position": 121343284,
+    "grch37": 121343284,
+    "grch38": 120585708,
+    "retrieved": true
+  },
+  {
+    "id": "rs1352709",
+    "chromosome": "6",
+    "observed_position": 69182514,
+    "grch37": 69182514,
+    "grch38": 68472622,
+    "retrieved": true
+  },
+  {
+    "id": "rs10784781",
+    "chromosome": "12",
+    "observed_position": 69828036,
+    "grch37": 69828036,
+    "grch38": 69434256,
+    "retrieved": true
+  },
+  {
+    "id": "rs6065094",
+    "chromosome": "20",
+    "observed_position": 37453194,
+    "grch37": 37453194,
+    "grch38": 38824551,
+    "retrieved": true
+  },
+  {
+    "id": "rs5756491",
+    "chromosome": "22",
+    "observed_position": 37421702,
+    "grch37": 37421702,
+    "grch38": 37025661,
+    "retrieved": true
+  }
+]
