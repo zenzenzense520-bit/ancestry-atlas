@@ -1,5 +1,6 @@
 numpy==2.3.5
 scikit-learn==1.8.0
+scipy==1.18.1
 matplotlib==3.10.8
 fonttools==4.61.1
 brotli==1.2.0

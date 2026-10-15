@@ -11,3 +11,19 @@
 .topbar{background:var(--paper)}.section.enter{animation:none}.section.enter .number{animation:ink-in .5s ease both}.diagnostic b{font-size:28px}.diagnostic b small{font-size:16px}
 @media(max-width:680px){.section-title{display:block}.section-note{display:block;text-align:left;max-width:none;margin-top:10px}.section-title>.tag{margin-top:12px}.section-title h2{max-width:none}.finding-heading h2{font-size:27px}.number{margin-bottom:10px}}
 @media(prefers-reduced-motion:reduce){.section.enter .number{animation:none!important}}
+
+/* 常染成分面板：EM 成分条形 + 判别与自召回脚注。 */
+.composition-panels{margin-top:26px;align-items:start;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.comp-panel{padding:22px}
+.comp-panel h3{margin:6px 0 8px}
+.comp-legend{color:var(--muted);margin:4px 0 12px}
+.comp-bars{display:flex;flex-direction:column;gap:9px;margin:12px 0 14px}
+.comp-row{display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr) 44px;align-items:center;gap:10px}
+.comp-name{font-size:12px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.comp-track{height:9px;background:var(--panel);border-radius:2px;overflow:hidden}
+.comp-track i{display:block;height:100%;background:var(--green);min-width:2px}
+.comp-val{font:12px/1 var(--serif);text-align:right;font-variant-numeric:tabular-nums}
+.comp-foot{border-top:1px solid var(--line);padding-top:10px;margin:10px 0 6px;font-size:12px;color:var(--muted);line-height:1.7}
+.comp-foot b{color:var(--red)}
+.comp-table{font-size:12px}
+@media(max-width:680px){.comp-row{grid-template-columns:minmax(0,104px) minmax(0,1fr) 42px}.comp-name{font-size:11px}}

@@ -124,4 +124,33 @@ class ArtifactChecks(unittest.TestCase):
             self.assertEqual(sum(r['n'] for r in h['per_group'].values()),h['test_n'])
             self.assertAlmostEqual(sum(r['n']*r['agreement'] for r in h['per_group'].values())/h['test_n'],h['centroid_agreement'])
 
+@unittest.skipUnless((ROOT/'results/composition.json').exists(), 'Private composition artifacts are required')
+class CompositionChecks(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.data=json.loads((ROOT/'results/composition.json').read_text(encoding='utf-8'))
+        with np.load(ROOT/'results/composition_model.npz') as archive:
+            cls.model={key:archive[key] for key in archive.files}
+    def test_panel_categories_and_probabilities_are_normalized(self):
+        for panel in self.data['panels']:
+            cats=set(panel['categories'])
+            self.assertEqual(set(panel['composition_em']),cats)
+            self.assertEqual(set(panel['composition_nnls']),cats)
+            self.assertEqual(set(panel['baseline_self_recall']),cats)
+            self.assertAlmostEqual(sum(panel['composition_em'].values()),1,places=6)
+            self.assertAlmostEqual(sum(panel['composition_nnls'].values()),1,places=6)
+            self.assertAlmostEqual(sum(panel['discriminator_proba'].values()),1,places=6)
+    def test_reference_resolution_and_call_bounds(self):
+        for panel in self.data['panels']:
+            self.assertTrue(all(0<=v<=1 for v in panel['baseline_self_recall'].values()))
+            self.assertTrue(0<=panel['discriminator_accuracy']<=1)
+            self.assertIn(panel['discriminator_call'],panel['categories'])
+            self.assertGreater(panel['n_reference'],0)
+    def test_saved_models_match_panel_shapes(self):
+        for panel in self.data['panels']:
+            name=panel['name'];selected=self.model[f'{name}_selected'];freq=self.model[f'{name}_freq']
+            self.assertEqual(len(selected),panel['n_sites'])
+            self.assertEqual(freq.shape,(len(panel['categories']),panel['n_sites']))
+            self.assertTrue(np.all((freq>0)&(freq<1)))
+
 if __name__=='__main__':unittest.main()

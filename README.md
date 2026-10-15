@@ -1,6 +1,6 @@
 # Ancestry Atlas
 
-A local, auditable workflow from a four-column genotype export to an offline HTML research report. The report combines input QC, GRCh37 assembly evidence, global reference PCA, and a separately fitted East Asian reference PCA. Sample genotypes do not participate in reference fitting or feature selection.
+A local, auditable workflow from a four-column genotype export to an offline HTML research report. The report combines input QC, GRCh37 assembly evidence, global reference PCA, a separately fitted East Asian reference PCA, and a supervised reference-composition step (EM / NNLS plus a PCA/LDA discriminator). Sample genotypes do not participate in reference fitting or feature selection.
 
 This repository contains source code, templates, public coordinate snapshots, licensed font subsets, and checks. Personal inputs, derived genotypes, computed reports, and numerical model files belong outside the Git publication scope.
 
@@ -29,6 +29,7 @@ python src/download_reference.py
 python src/decompress_reference.py
 python src/extract_reference.py
 OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 python src/expanded_pca.py
+python src/run_composition.py
 python src/figures.py
 python src/build_report.py
 python -m unittest discover -s tests -p 'test_*.py' -v
@@ -59,6 +60,6 @@ The bundled CJK font subsets are renamed Atlas Serif SC and covered by the inclu
 
 PCA is a relative reference-space comparison. Distances and internal holdout agreement are not ancestry proportions, identity labels, or personal accuracy probabilities. Nearby population centers can change order under solver or training-reference changes. The exported report keeps limitations next to the relevant figures.
 
-No ADMIXTURE, NNLS ancestry proportions, ancient-DNA affinity, Y haplogroup, mitochondrial haplogroup, or migration chronology is inferred by this version.
+A supervised EM (ADMIXTURE-style) and NNLS composition model plus a PCA/LDA discriminator are included as reference-model estimates, with cross-validated self-recall reported as the resolution ceiling; they are not ethnicity or nationality labels and not personal probabilities. No ancient-DNA affinity, Y haplogroup, mitochondrial haplogroup, or migration chronology is inferred.
 
 See [methods](docs/METHODS.md), [design](docs/DESIGN.md), and [sources](docs/SOURCES.md). Original code is MIT-licensed; reference data and fonts retain their respective terms.
