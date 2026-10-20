@@ -4,10 +4,6 @@ A local, auditable workflow from a four-column genotype export to an offline HTM
 
 This repository contains source code, templates, public coordinate snapshots, licensed font subsets, and checks. Personal inputs, derived genotypes, computed reports, and numerical model files belong outside the Git publication scope.
 
-## Windows / D drive
-
-The Windows migration package installs a source project and a separate private research workspace under `D:\AncestryAtlas`. See [Windows setup and public GitHub publication](docs/WINDOWS.md). Run `Publish-GitHub.cmd` inside the source project after signing in with GitHub CLI.
-
 ## Run locally
 
 Python 3.12 is the tested runtime. Install the pinned dependencies in a virtual environment:
